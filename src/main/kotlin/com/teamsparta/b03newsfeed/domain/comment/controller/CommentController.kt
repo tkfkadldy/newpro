@@ -16,6 +16,7 @@ class CommentController {
     fun getComment(){
         TODO()
     }
+
     @GetMapping
     fun getCommentList(){
         TODO()
@@ -24,10 +25,12 @@ class CommentController {
     fun updateComment(){
         TODO()
     }
+//asdgasgdgasdasdg
     @PostMapping
     fun createComment(){
         TODO()
     }
+
     @DeleteMapping("/{commentId}")
     fun deleteComment(){
         TODO()
