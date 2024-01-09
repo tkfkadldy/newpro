@@ -1,4 +1,7 @@
 package com.teamsparta.b03newsfeed.domain.user.repository
 
-interface UserRepository {
+import com.teamsparta.b03newsfeed.domain.user.model.User
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface UserRepository: JpaRepository<User, Long> {
 }
