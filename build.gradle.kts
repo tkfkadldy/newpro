@@ -9,6 +9,19 @@ plugins {
 
 }
 
+noArg {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.MappedSuperclass")
+	annotation("jakarta.persistence.Embeddable")
+}
+
+allOpen {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.MappedSuperclass")
+	annotation("jakarta.persistence.Embeddable")
+
+}
+
 group = "com.teamsparta"
 version = "0.0.1-SNAPSHOT"
 
@@ -36,6 +49,8 @@ dependencies {
 	implementation("com.h2database:h2")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	runtimeOnly("org.postgresql:postgresql")
 }
 
 tasks.withType<KotlinCompile> {
