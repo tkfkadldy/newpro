@@ -9,26 +9,24 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CommentServiceImpl : CommentService {
-    override fun getAllCommentList(): List<CommentResponse> {
+
+    override fun getAllCommentList(postId: Long): List<CommentResponse> {
         TODO("Not yet implemented")
     }
 
-    override fun getCommentById(commentId: Long): CommentResponse {
-        throw CommentNotFoundException(commentName = "Comment", commentId = 1L )
-    }
-
-    @Transactional
-    override fun createComment(request: CreateCommentRequest): CommentResponse {
+    override fun getCommentById(postId: Long, commentId: Long): CommentResponse {
         TODO("Not yet implemented")
     }
-
-    @Transactional
-    override fun updateComment(commentId: Long, request: UpdateCommentRequest): CommentResponse {
+@Transactional
+    override fun createComment(postId: Long, request: CreateCommentRequest): CommentResponse {
         TODO("Not yet implemented")
     }
-
-    @Transactional
-    override fun deleteComment(commentId: Long) {
+@Transactional
+    override fun updateComment(postId: Long, commentId: Long, request: UpdateCommentRequest): CommentResponse {
+        TODO("Not yet implemented")
+    }
+@Transactional
+    override fun deleteComment(postId: Long, commentId: Long) {
         TODO("Not yet implemented")
     }
 }
