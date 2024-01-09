@@ -18,39 +18,44 @@ class CommentController(
 ) {
 
     @GetMapping("/{commentId}")
-    fun getComment(@PathVariable commentId: Long): ResponseEntity<CommentResponse> {
+    fun getComment(@PathVariable postId:Long , @PathVariable commentId: Long): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(commentService.getCommentById(commentId))
+            .body(commentService.getCommentById(postId,commentId))
     }
 
     @GetMapping
-    fun getCommentList(): ResponseEntity<List<CommentResponse>> {
+    fun getCommentList(@PathVariable postId: Long): ResponseEntity<List<CommentResponse>> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(commentService.getAllCommentList())
+            .body(commentService.getAllCommentList(postId))
     }
 
     @PutMapping("/{commentId}")
     fun updateComment(
+        @PathVariable postId: Long,
         @PathVariable commentId: Long,
         @RequestBody updateCommentRequest: UpdateCommentRequest
     ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(commentService.updateComment(commentId, updateCommentRequest))
+            .body(commentService.updateComment(postId ,commentId, updateCommentRequest))
     }
 
     @PostMapping
-    fun createComment(@RequestBody createCommentRequest: CreateCommentRequest): ResponseEntity<CommentResponse> {
+    fun createComment(
+        @PathVariable postId: Long ,
+        @RequestBody createCommentRequest: CreateCommentRequest): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(commentService.createComment(createCommentRequest))
+            .body(commentService.createComment(postId ,createCommentRequest))
     }
 
     @DeleteMapping("/{commentId}")
-    fun deleteComment(@PathVariable commentId: Long): ResponseEntity<Unit> {
-        commentService.deleteComment(commentId)
+    fun deleteComment(
+        @PathVariable postId: Long,
+        @PathVariable commentId: Long): ResponseEntity<Unit> {
+        commentService.deleteComment(postId ,commentId)
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
             .build()
