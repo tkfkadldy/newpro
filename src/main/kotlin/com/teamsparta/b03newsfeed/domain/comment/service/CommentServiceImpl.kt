@@ -4,8 +4,6 @@ import com.teamsparta.b03newsfeed.domain.comment.dto.CommentResponse
 import com.teamsparta.b03newsfeed.domain.comment.dto.CreateCommentRequest
 import com.teamsparta.b03newsfeed.domain.comment.dto.UpdateCommentRequest
 import com.teamsparta.b03newsfeed.domain.comment.exception.CommentNotFoundException
-import com.teamsparta.b03newsfeed.domain.comment.model.Comment
-import com.teamsparta.b03newsfeed.domain.comment.model.toResponse
 import com.teamsparta.b03newsfeed.domain.comment.repository.CommentRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
