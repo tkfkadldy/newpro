@@ -1,5 +1,5 @@
 spring:
   datasource:
     url: jdbc:postgresql://db.agmxrfatdspwshakdptw.supabase.co:5432/postgres
-    username: postgre
+    username: postgres
     password: teamb03!project!!
