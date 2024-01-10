@@ -4,10 +4,11 @@ import com.teamsparta.b03newsfeed.domain.post.dto.CreatePostRequest
 import com.teamsparta.b03newsfeed.domain.post.dto.PostResponse
 import com.teamsparta.b03newsfeed.domain.post.dto.UpdatePostRequest
 
-interface PostService {
-     fun getAllPostList(): List<PostResponse>
 
-     fun getPostById(postId:Long) : PostResponse
+interface PostService {
+     fun getPostList(): List<PostResponse>
+
+     fun getPost(postId:Long) : PostResponse
 
      fun createPost(request: CreatePostRequest) :PostResponse
 

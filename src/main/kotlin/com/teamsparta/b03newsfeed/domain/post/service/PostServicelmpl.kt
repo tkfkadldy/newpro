@@ -6,32 +6,35 @@ import com.teamsparta.b03newsfeed.domain.post.dto.PostResponse
 import com.teamsparta.b03newsfeed.domain.post.dto.UpdatePostRequest
 import com.teamsparta.b03newsfeed.domain.post.exception.PostNotFoundException
 import com.teamsparta.b03newsfeed.domain.post.model.Post
+import com.teamsparta.b03newsfeed.domain.post.model.toResponse
 import com.teamsparta.b03newsfeed.domain.post.repository.PostRepository
 import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class PostServicelmpl(
+class PostServiceImpl(
     private val postRepository: PostRepository,
     private val commentRepository: CommentRepository,
     private val userRepository: UserRepository,
-) {
-    override fun getAllPostList(): List<PostResponse> {
+) :PostService {
+
+    override fun getPostList(): List<PostResponse> {
         return postRepository.findAll().map { it.toResponse() }
     }
-    override fun getPostById(postId: Long): PostResponse {
+    override fun getPost(postId: Long): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
         return post.toResponse()
 
     }
-
     @Transactional
     override fun createPost(request: CreatePostRequest): PostResponse {
         return postRepository.save(
             Post(
                 title = request.title,
                 content = request.content,
+                tag = t
             )
         ).toResponse()
     }
