@@ -34,18 +34,19 @@ class PostServiceImpl(
             Post(
                 title = request.title,
                 content = request.content,
-                tag = t
+                tag = request.tag
+
             )
         ).toResponse()
     }
     @Transactional
     override fun updatePost(postId: Long, request: UpdatePostRequest): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
-        val (title, content) = request
+        val (title, content,imageUrl,tag) = request
 
         post.title = title
         post.content = content
-        post.image = image
+        post.imageUrl = imageUrl
         post.tag = tag
 
         return postRepository.save(post).toResponse()

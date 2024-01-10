@@ -21,7 +21,7 @@ class PostController(
     fun getPost(@PathVariable postId: Long): ResponseEntity<PostResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(postService.getPostById(postId))
+            .body(postService.getPost(postId))
     }
 
     //목록조회
@@ -29,7 +29,7 @@ class PostController(
     fun getPostList(): ResponseEntity<List<PostResponse>> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(postService.getAllPostList())
+            .body(postService.getPostList())
     }
 
     //생성
