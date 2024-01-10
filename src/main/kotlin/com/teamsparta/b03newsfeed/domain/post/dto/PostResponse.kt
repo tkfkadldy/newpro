@@ -5,7 +5,7 @@ data class PostResponse(
     val title: String?,
     val content: String?,
     val tag: String,
-    val image: String
+    val imageurl: String
 )
 
 //post

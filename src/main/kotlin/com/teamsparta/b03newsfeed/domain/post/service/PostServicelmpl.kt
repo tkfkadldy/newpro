@@ -6,8 +6,10 @@ import com.teamsparta.b03newsfeed.domain.post.dto.PostResponse
 import com.teamsparta.b03newsfeed.domain.post.dto.UpdatePostRequest
 import com.teamsparta.b03newsfeed.domain.post.exception.PostNotFoundException
 import com.teamsparta.b03newsfeed.domain.post.model.Post
+import com.teamsparta.b03newsfeed.domain.post.model.toResponse
 import com.teamsparta.b03newsfeed.domain.post.repository.PostRepository
 import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -32,17 +34,19 @@ class PostServicelmpl(
             Post(
                 title = request.title,
                 content = request.content,
+                imageurl = request.imageurl,
+                tag = request.tag,
             )
         ).toResponse()
     }
     @Transactional
     override fun updatePost(postId: Long, request: UpdatePostRequest): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
-        val (title, content) = request
+        val (title, content,imageurl,tag) = request
 
         post.title = title
         post.content = content
-        post.image = image
+        post.imageurl = imageurl
         post.tag = tag
 
         return postRepository.save(post).toResponse()
