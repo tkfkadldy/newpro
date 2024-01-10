@@ -34,7 +34,7 @@ class PostServicelmpl(
             Post(
                 title = request.title,
                 content = request.content,
-                imageurl = request.imageurl,
+                imageUrl = request.image,
                 tag = request.tag,
             )
         ).toResponse()
@@ -42,11 +42,11 @@ class PostServicelmpl(
     @Transactional
     override fun updatePost(postId: Long, request: UpdatePostRequest): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
-        val (title, content,imageurl,tag) = request
+        val (title, content,image,tag) = request
 
         post.title = title
         post.content = content
-        post.imageurl = imageurl
+        post.imageUrl = image
         post.tag = tag
 
         return postRepository.save(post).toResponse()

@@ -25,7 +25,7 @@ class Post(
     @Column(name= "tag")
     var tag: String,
 
-    @Column (name="imageurl")
+    @Column (name="image")
     var imageUrl: String? = null,
 
 
