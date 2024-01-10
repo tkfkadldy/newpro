@@ -34,6 +34,7 @@ class PostServiceImpl(
             Post(
                 title = request.title,
                 content = request.content,
+                imageUrl = request.imageUrl,
                 tag = request.tag
 
             )
