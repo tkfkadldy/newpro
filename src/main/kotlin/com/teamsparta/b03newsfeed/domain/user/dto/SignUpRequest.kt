@@ -4,5 +4,6 @@ data class SignUpRequest(
     val email: String,
     val password: String,
     val nickname: String,
+    val introduce: String,
     val role: String
 )
