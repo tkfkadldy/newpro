@@ -10,22 +10,22 @@ import java.time.LocalDateTime
 @Table(name = "post")
 class Post(
 
-    @Column
+    @Column(name="title")
     var title: String,
 
-    @Column
+    @Column(name="content")
     var content: String,
 
-    @Column
-    var createdAt: LocalDateTime = java.time.LocalDateTime.now(),
+    @Column (name="created_at")
+    var createdAt:LocalDateTime = LocalDateTime.now(),
 
-    @Column
-    var updatedAt: LocalDateTime = java.time.LocalDateTime.now(),
+    @Column(name="update_at")
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column
+    @Column(name= "tag")
     var tag: String,
 
-    @Column
+    @Column (name="imageurl")
     var imageUrl: String? = null,
 
 
