@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-//테스트
+//이름바꾼거 테스트
 
 @RequestMapping("/posts/{postId}/comments")
 @RestController
