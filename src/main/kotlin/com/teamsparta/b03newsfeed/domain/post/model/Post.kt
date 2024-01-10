@@ -25,7 +25,7 @@ class Post(
     @Column(name= "tag")
     var tag: String,
 
-    @Column (name="imageUrl")
+    @Column (name="image")
     var imageUrl: String? = null,
 
 
@@ -47,7 +47,7 @@ fun Post.toResponse(): PostResponse {
         id = id!!,
         title = title,
         content = content,
-        imageUrl = imageUrl ?:"",
+        image = imageUrl ?:"",
         tag = tag,
     )
 }
