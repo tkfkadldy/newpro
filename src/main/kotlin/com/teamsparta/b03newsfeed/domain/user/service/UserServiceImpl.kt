@@ -7,7 +7,7 @@ import com.teamsparta.b03newsfeed.domain.user.model.User
 import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
 import com.teamsparta.b03newsfeed.infra.security.jwt.JwtPlugin
 import com.teamsparta.b03newsfeed.domain.user.model.Profile
-//import com.teamsparta.b03newsfeed.domain.user.model.UserRole
+import com.teamsparta.b03newsfeed.domain.user.model.UserRole
 import com.teamsparta.b03newsfeed.domain.user.model.toResponse
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -23,15 +23,15 @@ class UserServiceImpl(
     override fun login(request: LoginRequest): LoginResponse {
         val user = userRepository.findByEmail(request.email)?: throw ModelNotFoundException("User", null)
 
-//        if (user.role.name != request.role || !passwordEncoder.matches(request.password, user.password)) {
-//            throw InvalidCredentialException()
-//        }
+        if (user.role.name != request.role || !passwordEncoder.matches(request.password, user.password)) {
+            throw InvalidCredentialException()
+        }
 
         return LoginResponse(
             accesToken = jwtPlugin.generateAccesToken(
                 subject = user.id.toString(),
                 email = user.email,
-//                role = user.role.name
+                role = user.role.name
             )
         )
     }
@@ -47,11 +47,11 @@ class UserServiceImpl(
                 password = passwordEncoder.encode(request.password),
                 profile = Profile(
                     nickname = request.nickname),
-//                role = when (request.role){
-//                    "USER" -> UserRole.COMMON
-//                    "ADMIN" -> UserRole.ADMIN
-//                    else ->throw IllegalArgumentException("Invalid role")
-//                }
+                role = when (request.role){
+                    "USER" -> UserRole.COMMON
+                    "ADMIN" -> UserRole.ADMIN
+                    else -> throw IllegalArgumentException("Invalid role")
+                }
         )
         ).toResponse()
     }

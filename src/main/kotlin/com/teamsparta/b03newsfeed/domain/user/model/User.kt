@@ -17,10 +17,10 @@ class User(
     @Embedded
     var profile: Profile,
 
-//    @Enumerated(EnumType.STRING)
-//    @Column(name= "role", nullable = false)
-//    val role: UserRole,
-
+    @Enumerated(EnumType.STRING)
+    @Column(name= "role", nullable = false)
+    val role: UserRole,
+//
 //    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
 //    val b03newsfeedApplications: MutableList<B03newsfeedApplication> = mutableListOf()
 
@@ -35,7 +35,7 @@ fun User.toResponse(): UserResponse {
     return UserResponse(
         id = id!!,
         nickname = profile.nickname,
-        email = email
-//        role = role.name
+        email = email,
+        role = role.name
     )
 }
