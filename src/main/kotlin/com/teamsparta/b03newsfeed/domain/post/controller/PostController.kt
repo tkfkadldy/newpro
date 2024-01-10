@@ -27,7 +27,6 @@ class PostController(
     //목록조회
     @GetMapping
     fun getPostList(): ResponseEntity<List<PostResponse>> {
-
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(postService.getAllPostList())
