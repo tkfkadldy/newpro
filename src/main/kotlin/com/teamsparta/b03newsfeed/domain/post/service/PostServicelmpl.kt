@@ -14,39 +14,38 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class PostServicelmpl(
+class PostServiceImpl(
     private val postRepository: PostRepository,
     private val commentRepository: CommentRepository,
     private val userRepository: UserRepository,
-) {
-    override fun getAllPostList(): List<PostResponse> {
+) :PostService {
+
+    override fun getPostList(): List<PostResponse> {
         return postRepository.findAll().map { it.toResponse() }
     }
-    override fun getPostById(postId: Long): PostResponse {
+    override fun getPost(postId: Long): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
         return post.toResponse()
 
     }
-
     @Transactional
     override fun createPost(request: CreatePostRequest): PostResponse {
         return postRepository.save(
             Post(
                 title = request.title,
                 content = request.content,
-                imageUrl = request.image,
-                tag = request.tag,
+                tag = t
             )
         ).toResponse()
     }
     @Transactional
     override fun updatePost(postId: Long, request: UpdatePostRequest): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
-        val (title, content,image,tag) = request
+        val (title, content) = request
 
         post.title = title
         post.content = content
-        post.imageUrl = image
+        post.image = image
         post.tag = tag
 
         return postRepository.save(post).toResponse()
