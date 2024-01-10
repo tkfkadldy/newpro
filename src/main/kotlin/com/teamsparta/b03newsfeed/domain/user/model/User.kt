@@ -36,6 +36,7 @@ fun User.toResponse(): UserResponse {
         id = id!!,
         nickname = profile.nickname,
         email = email,
-        role = role.name
+        role = role.name,
+        introduce = profile.introduce
     )
 }

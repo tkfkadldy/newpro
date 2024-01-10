@@ -5,5 +5,5 @@ data class UserResponse(
     val email: String,
     val nickname: String,
     val role: String,
-//    val introduce: String,
+    val introduce: String,
 )

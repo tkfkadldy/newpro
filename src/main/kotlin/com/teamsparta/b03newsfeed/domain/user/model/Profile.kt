@@ -6,5 +6,8 @@ import jakarta.persistence.Embeddable
 @Embeddable
 class Profile(
     @Column(name = "nickname", nullable = false)
-    var nickname: String
+    var nickname: String,
+
+    @Column(name = "introduce", nullable = false)
+    var introduce: String
 )

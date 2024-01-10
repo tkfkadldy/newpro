@@ -20,6 +20,11 @@ class UserServiceImpl(
     private val jwtPlugin: JwtPlugin
 ) : UserService {
 
+    override fun getUserProfileById(userId: Long): UserResponse {
+        val user = userRepository.findByIdOrNull(userId) ?: throw ModelNotFoundException("User", userId)
+        return user.toResponse()
+    }
+
     override fun login(request: LoginRequest): LoginResponse {
         val user = userRepository.findByEmail(request.email)?: throw ModelNotFoundException("User", null)
 
@@ -46,10 +51,11 @@ class UserServiceImpl(
                 email = request.email,
                 password = passwordEncoder.encode(request.password),
                 profile = Profile(
-                    nickname = request.nickname),
+                    nickname = request.nickname,
+                    introduce = request.introduce),
                 role = when (request.role){
-                    "USER" -> UserRole.COMMON
-                    "ADMIN" -> UserRole.ADMIN
+                    "User" -> UserRole.User
+                    "Admin" -> UserRole.Admin
                     else -> throw IllegalArgumentException("Invalid role")
                 }
         )
@@ -59,7 +65,8 @@ class UserServiceImpl(
     override fun updateUserProfile(userId: Long, updateUserProfileRequest: UpdateUserProfileRequest): UserResponse {
         val user = userRepository.findByIdOrNull(userId) ?: throw ModelNotFoundException("User", userId)
         user.profile = Profile(
-            nickname = updateUserProfileRequest.nickname
+            nickname = updateUserProfileRequest.nickname,
+            introduce = updateUserProfileRequest.introduce
         )
 
         return userRepository.save(user).toResponse()

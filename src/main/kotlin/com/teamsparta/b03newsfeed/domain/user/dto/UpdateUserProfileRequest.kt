@@ -1,7 +1,6 @@
 package com.teamsparta.b03newsfeed.domain.user.dto
 
 data class UpdateUserProfileRequest(
-    val exPassword: String,
     val password: String,
     val nickname: String,
     val introduce: String,
