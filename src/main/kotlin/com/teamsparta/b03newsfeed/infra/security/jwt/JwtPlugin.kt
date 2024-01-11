@@ -11,7 +11,7 @@ import java.time.Instant
 import java.util.*
 
 @Component
-class JwtPlugin() {
+class JwtPlugin {
     companion object {
         const val ISSUER = "team.sparta.com"
         const val SECRET = "PO4c8z41Hia5gJG3oeuFJMRYBB4Ws4aZ"

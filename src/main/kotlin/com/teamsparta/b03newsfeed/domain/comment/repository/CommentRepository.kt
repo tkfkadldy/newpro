@@ -8,3 +8,4 @@ interface CommentRepository : JpaRepository<Comment,Long> {
    fun findByPostIdAndId(postId: Long , commentId: Long): Comment?
 
 }
+

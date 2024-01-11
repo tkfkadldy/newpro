@@ -19,14 +19,16 @@ class Post(
     @Column (name="created_at")
     var createdAt:LocalDateTime = LocalDateTime.now(),
 
-    @Column(name="update_at")
+    @Column(name="updated_at")
     var updatedAt: LocalDateTime = LocalDateTime.now(),
 
     @Column(name= "tag")
     var tag: String,
 
-    @Column (name="imageUrl")
+    @Column (name="imageurl")
     var imageUrl: String? = null,
+
+
 
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
@@ -34,10 +36,19 @@ class Post(
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var users: MutableList<User> = mutableListOf(),
 
+
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    var post_id: Long? = null
+
+    fun createComment(comment: Comment) {
+        comments.add(comment)
+    }
+
+    fun deleteComment(comment:Comment) {
+        comments.remove(comment)
+    }
 
     fun createComment(comment: Comment) {
         comments.add(comment)
@@ -52,7 +63,7 @@ class Post(
 
 fun Post.toResponse(): PostResponse {
     return PostResponse(
-        id = id!!,
+        post_id = post_id!!,
         title = title,
         content = content,
         imageUrl = imageUrl ?:"",

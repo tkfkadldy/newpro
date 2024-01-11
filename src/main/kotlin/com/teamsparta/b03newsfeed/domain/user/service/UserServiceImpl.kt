@@ -3,12 +3,12 @@ package com.teamsparta.b03newsfeed.domain.user.service
 import com.teamsparta.b03newsfeed.domain.user.dto.*
 import com.teamsparta.b03newsfeed.domain.user.exception.InvalidCredentialException
 import com.teamsparta.b03newsfeed.domain.user.exception.ModelNotFoundException
-import com.teamsparta.b03newsfeed.domain.user.model.User
-import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
-import com.teamsparta.b03newsfeed.infra.security.jwt.JwtPlugin
 import com.teamsparta.b03newsfeed.domain.user.model.Profile
+import com.teamsparta.b03newsfeed.domain.user.model.User
 import com.teamsparta.b03newsfeed.domain.user.model.UserRole
 import com.teamsparta.b03newsfeed.domain.user.model.toResponse
+import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
+import com.teamsparta.b03newsfeed.infra.security.jwt.JwtPlugin
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -34,7 +34,7 @@ class UserServiceImpl(
 
         return LoginResponse(
             accesToken = jwtPlugin.generateAccesToken(
-                subject = user.id.toString(),
+                subject = user.user_id.toString(),
                 email = user.email,
                 role = user.role.name
             )
