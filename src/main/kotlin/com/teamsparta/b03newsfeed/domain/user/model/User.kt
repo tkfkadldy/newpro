@@ -1,6 +1,7 @@
 package com.teamsparta.b03newsfeed.domain.user.model
 
 import com.teamsparta.b03newsfeed.B03newsfeedApplication
+import com.teamsparta.b03newsfeed.domain.comment.model.Comment
 import com.teamsparta.b03newsfeed.domain.user.dto.UserResponse
 import jakarta.persistence.*
 
@@ -24,6 +25,8 @@ class User(
 //    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
 //    val b03newsfeedApplications: MutableList<B03newsfeedApplication> = mutableListOf()
 
+    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    var comments: MutableList<Comment> = mutableListOf(),
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
