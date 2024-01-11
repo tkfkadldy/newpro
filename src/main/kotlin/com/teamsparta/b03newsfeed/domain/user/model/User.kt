@@ -7,7 +7,7 @@ import com.teamsparta.b03newsfeed.domain.user.dto.UserResponse
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "user")
 class User(
 
     @Column(name= "email", nullable = false)
