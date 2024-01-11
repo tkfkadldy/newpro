@@ -4,7 +4,7 @@ import com.teamsparta.b03newsfeed.domain.user.dto.*
 
 interface UserService {
 
-    fun getUserProfileById(UserId: Long): UserResponse
+    fun getUserProfileById(userId: Long): UserResponse
 
     fun signUp(request: SignUpRequest): UserResponse
 

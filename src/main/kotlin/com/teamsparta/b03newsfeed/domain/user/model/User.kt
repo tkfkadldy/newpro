@@ -22,24 +22,24 @@ class User(
     @Enumerated(EnumType.STRING)
     @Column(name= "role", nullable = false)
     val role: UserRole,
-//
-//    @OneToMany(mappedBy = "app_user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
-//    var posts: MutableList<Post> = mutableListOf()
 
-    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "app_user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
+    var posts: MutableList<Post> = mutableListOf(),
+
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
 ) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var user_id: Long? = null
+    var userid: Long? = null
 
 }
 
 fun User.toResponse(): UserResponse {
     return UserResponse(
-        user_id = user_id!!,
+        user_id = userid!!,
         nickname = profile.nickname,
         email = email,
         role = role.name,

@@ -34,7 +34,7 @@ class UserServiceImpl(
 
         return LoginResponse(
             accesToken = jwtPlugin.generateAccesToken(
-                subject = user.user_id.toString(),
+                subject = user.userid.toString(),
                 email = user.email,
                 role = user.role.name
             )

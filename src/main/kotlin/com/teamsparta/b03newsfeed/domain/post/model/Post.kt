@@ -40,8 +40,11 @@ class Post(
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var post_id: Long? = null
+    var postid: Long? = null
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var tagid: Long? = null
 
     fun createComment(comment: Comment) {
         comments.add(comment)
@@ -56,7 +59,7 @@ class Post(
 
 fun Post.toResponse(): PostResponse {
     return PostResponse(
-        post_id = post_id!!,
+        postId = postid!!,
         title = title,
         content = content,
         imageUrl = imageUrl ?:"",
