@@ -11,7 +11,7 @@ import java.time.LocalDateTime
 class Comment(
 
 
-    @Column(name = "comment", nullable = false)
+    @Column(name = "oomment", nullable = false)
     var description: String,
 
     @Column(name = "created_at")
@@ -43,6 +43,7 @@ class Comment(
 
 fun Comment.toResponse(): CommentResponse {
     return CommentResponse(
+        id=id!!,
         description = description,
         updateAt = updateAt,
         createAt = createdAt,
