@@ -1,6 +1,7 @@
 package com.teamsparta.b03newsfeed.domain.user.model
 
 import com.teamsparta.b03newsfeed.B03newsfeedApplication
+import com.teamsparta.b03newsfeed.domain.post.model.Post
 import com.teamsparta.b03newsfeed.domain.user.dto.UserResponse
 import jakarta.persistence.*
 
@@ -21,19 +22,19 @@ class User(
     @Column(name= "role", nullable = false)
     val role: UserRole,
 //
-//    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
-//    val b03newsfeedApplications: MutableList<B03newsfeedApplication> = mutableListOf()
+//    @OneToMany(mappedBy = "app_user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
+//    var posts: MutableList<Post> = mutableListOf()
 
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    var user_id: Long? = null
 
 }
 
 fun User.toResponse(): UserResponse {
     return UserResponse(
-        id = id!!,
+        user_id = user_id!!,
         nickname = profile.nickname,
         email = email,
         role = role.name,
