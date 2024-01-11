@@ -26,7 +26,7 @@ class UserServiceImpl(
     }
 
     override fun login(request: LoginRequest): LoginResponse {
-        val user = userRepository.findByEmail(request.email)?: throw ModelNotFoundException("User", null)
+        val user = userRepository.findByEmail(request.email) ?: throw ModelNotFoundException("User", null)
 
         if (user.role.name != request.role || !passwordEncoder.matches(request.password, user.password)) {
             throw InvalidCredentialException()
@@ -52,13 +52,14 @@ class UserServiceImpl(
                 password = passwordEncoder.encode(request.password),
                 profile = Profile(
                     nickname = request.nickname,
-                    introduce = request.introduce),
-                role = when (request.role){
+                    introduce = request.introduce
+                ),
+                role = when (request.role) {
                     "User" -> UserRole.User
                     "Admin" -> UserRole.Admin
                     else -> throw IllegalArgumentException("Invalid role")
                 }
-        )
+            )
         ).toResponse()
     }
 
