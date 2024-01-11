@@ -42,13 +42,6 @@ class Post(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var post_id: Long? = null
 
-    fun createComment(comment: Comment) {
-        comments.add(comment)
-    }
-
-    fun deleteComment(comment:Comment) {
-        comments.remove(comment)
-    }
 
     fun createComment(comment: Comment) {
         comments.add(comment)
