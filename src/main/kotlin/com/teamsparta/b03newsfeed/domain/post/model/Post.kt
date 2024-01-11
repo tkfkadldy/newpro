@@ -28,30 +28,31 @@ class Post(
     @Column (name="imageurl")
     var imageUrl: String? = null,
 
-    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
-//    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
-//    var users: MutableList<User> = mutableListOf(),
+    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    var users: MutableList<User> = mutableListOf(),
 
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var post_id: Long? = null
+    var Post_id: Long? = null
 
     fun createComment(comment: Comment) {
         comments.add(comment)
     }
 
-    fun deleteComment(comment:Comment) {
+    fun deleteComment(comment: Comment) {
         comments.remove(comment)
     }
+
 
 }
 
 fun Post.toResponse(): PostResponse {
     return PostResponse(
-        post_id = post_id!!,
+        post_id = Post_id!!,
         title = title,
         content = content,
         imageUrl = imageUrl ?:"",

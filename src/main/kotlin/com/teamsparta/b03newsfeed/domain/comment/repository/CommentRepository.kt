@@ -4,4 +4,7 @@ import com.teamsparta.b03newsfeed.domain.comment.model.Comment
 import org.springframework.data.jpa.repository.JpaRepository
 
 
-interface CommentRepository : JpaRepository<Comment,Long>
+interface CommentRepository : JpaRepository<Comment,Long> {
+
+
+}
