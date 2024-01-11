@@ -28,11 +28,14 @@ class Post(
     @Column (name="imageurl")
     var imageUrl: String? = null,
 
-    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+
+
+    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
-//    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
-//    var users: MutableList<User> = mutableListOf(),
+    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    var users: MutableList<User> = mutableListOf(),
+
 
 ) {
     @Id
@@ -46,6 +49,15 @@ class Post(
     fun deleteComment(comment:Comment) {
         comments.remove(comment)
     }
+
+    fun createComment(comment: Comment) {
+        comments.add(comment)
+    }
+
+    fun deleteComment(comment: Comment) {
+        comments.remove(comment)
+    }
+
 
 }
 

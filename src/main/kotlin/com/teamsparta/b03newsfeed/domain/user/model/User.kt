@@ -29,7 +29,8 @@ class User(
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
-    ) {
+) {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var user_id: Long? = null

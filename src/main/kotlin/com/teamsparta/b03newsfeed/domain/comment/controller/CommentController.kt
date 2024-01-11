@@ -18,11 +18,11 @@ class CommentController(
 ) {
 
     @GetMapping("/{commentId}")
-    fun getComment(@PathVariable postId:Long ,
+    fun getComment(@PathVariable postId: Long,
                    @PathVariable commentId: Long): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(commentService.getCommentById(postId,commentId))
+            .body(commentService.getCommentById(postId, commentId))
     }
 
     @GetMapping
@@ -40,23 +40,26 @@ class CommentController(
     ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(commentService.updateComment(postId ,commentId, updateCommentRequest))
+            .body(commentService.updateComment(postId, commentId, updateCommentRequest))
     }
 
-    @PostMapping
+    @PostMapping("/{userId}")
     fun createComment(
-        @PathVariable postId: Long ,
-        @RequestBody createCommentRequest: CreateCommentRequest): ResponseEntity<CommentResponse> {
+        @PathVariable postId: Long,
+        @PathVariable userId: Long,
+        @RequestBody createCommentRequest: CreateCommentRequest
+    ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(commentService.createComment(postId ,createCommentRequest))
+            .body(commentService.createComment(userId ,postId , createCommentRequest))
     }
 
     @DeleteMapping("/{commentId}")
     fun deleteComment(
         @PathVariable postId: Long,
-        @PathVariable commentId: Long): ResponseEntity<Unit> {
-        commentService.deleteComment(postId ,commentId)
+        @PathVariable commentId: Long
+    ): ResponseEntity<Unit> {
+        commentService.deleteComment(postId, commentId)
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
             .build()
