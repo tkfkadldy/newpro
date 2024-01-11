@@ -36,15 +36,15 @@ class Post(
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var users: MutableList<User> = mutableListOf(),
 
+    @Id
+    var tagid: Long? = null
+
 
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var postid: Long? = null
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var tagid: Long? = null
 
     fun createComment(comment: Comment) {
         comments.add(comment)

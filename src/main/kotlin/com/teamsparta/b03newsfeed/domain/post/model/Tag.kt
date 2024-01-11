@@ -1,6 +1,5 @@
 package com.teamsparta.b03newsfeed.domain.post.model
 
-import com.teamsparta.b03newsfeed.domain.post.dto.PostResponse
 import com.teamsparta.b03newsfeed.domain.post.dto.TagResponse
 import jakarta.persistence.*
 
