@@ -22,9 +22,9 @@ class User(
     @Enumerated(EnumType.STRING)
     @Column(name= "role", nullable = false)
     val role: UserRole,
-
-    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
-    var posts: MutableList<Post> = mutableListOf(),
+//
+//    @OneToMany(mappedBy = "app_user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
+//    var posts: MutableList<Post> = mutableListOf()
 
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),

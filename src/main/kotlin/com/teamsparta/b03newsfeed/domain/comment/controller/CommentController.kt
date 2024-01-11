@@ -43,15 +43,14 @@ class CommentController(
             .body(commentService.updateComment(postId, commentId, updateCommentRequest))
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping
     fun createComment(
         @PathVariable postId: Long,
-        @PathVariable userId: Long,
         @RequestBody createCommentRequest: CreateCommentRequest
     ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(commentService.createComment(userId ,postId , createCommentRequest))
+            .body(commentService.createComment(postId , createCommentRequest))
     }
 
     @DeleteMapping("/{commentId}")
