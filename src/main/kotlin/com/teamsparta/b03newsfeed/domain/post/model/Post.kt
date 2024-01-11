@@ -28,7 +28,6 @@ class Post(
     @Column (name="imageUrl")
     var imageUrl: String? = null,
 
-
     @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
