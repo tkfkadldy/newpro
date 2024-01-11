@@ -28,7 +28,7 @@ class Post(
     @Column (name="imageurl")
     var imageUrl: String? = null,
 
-    @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
 //    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
@@ -38,6 +38,14 @@ class Post(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var post_id: Long? = null
+
+    fun createComment(comment: Comment) {
+        comments.add(comment)
+    }
+
+    fun deleteComment(comment:Comment) {
+        comments.remove(comment)
+    }
 
 }
 
