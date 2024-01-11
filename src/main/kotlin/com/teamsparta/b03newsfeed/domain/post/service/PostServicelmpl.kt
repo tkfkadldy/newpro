@@ -55,8 +55,8 @@ class PostServiceImpl(
 
     @Transactional
     override fun deletePost(postId: Long) {
-        val course = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
-        postRepository.delete(course)
+        val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
+        postRepository.delete(post)
     }
 
 
