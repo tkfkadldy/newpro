@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 data class CommentResponse(
 
-
+    val arthur: String,
     val description:String,
     val createAt: LocalDateTime,
     val updateAt:LocalDateTime
