@@ -30,13 +30,14 @@ class PostServiceImpl(
     }
     @Transactional
     override fun createPost(request: CreatePostRequest): PostResponse {
+        val user = userRepository.findByIdOrNull(request.userId)?: throw RuntimeException()//userNotFound 만들어야함
         return postRepository.save(
             Post(
+                user = user,
                 title = request.title,
                 content = request.content,
                 imageUrl = request.imageUrl,
                 tag = request.tag
-
             )
         ).toResponse()
     }
