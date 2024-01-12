@@ -2,9 +2,9 @@ package com.teamsparta.b03newsfeed.domain.post.model
 
 import com.teamsparta.b03newsfeed.domain.comment.model.Comment
 import com.teamsparta.b03newsfeed.domain.post.dto.PostResponse
-import com.teamsparta.b03newsfeed.domain.user.model.User
 import jakarta.persistence.*
 import java.time.LocalDateTime
+import kotlin.jvm.Transient
 
 @Entity
 @Table(name = "post")
@@ -26,26 +26,24 @@ class Post(
     var tag: String,
 
     @Column (name="imageurl")
-    var imageUrl: String? = null,
+    var imageUrl: String,
+
 
 
 
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
-    var comments: MutableList<Comment> = mutableListOf(),
+    var comments: MutableList<Comment> = mutableListOf()
 
 //    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
 //    var users: MutableList<User> = mutableListOf(),
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    var user: User
 
 
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    var id: Long? = null
+    var id: Long?= null
+
 
 
     fun createComment(comment: Comment) {
@@ -64,7 +62,7 @@ fun Post.toResponse(): PostResponse {
         id = id!!,
         title = title,
         content = content,
-        imageUrl = imageUrl ?:"",
+        imageUrl = imageUrl,
         tag = tag,
     )
 }
