@@ -8,6 +8,7 @@ import com.teamsparta.b03newsfeed.domain.post.exception.PostNotFoundException
 import com.teamsparta.b03newsfeed.domain.post.model.Post
 import com.teamsparta.b03newsfeed.domain.post.model.toResponse
 import com.teamsparta.b03newsfeed.domain.post.repository.PostRepository
+import com.teamsparta.b03newsfeed.domain.user.exception.ModelNotFoundException
 import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -32,8 +33,10 @@ class PostServiceImpl(
 
     @Transactional
     override fun createPost(request: CreatePostRequest): PostResponse {
+        val user = userRepository.findByIdOrNull(request.userId)?: throw ModelNotFoundException("User", null)
         return postRepository.save(
             Post(
+                user = user,
                 title = request.title,
                 content = request.content,
                 imageUrl = request.imageUrl,

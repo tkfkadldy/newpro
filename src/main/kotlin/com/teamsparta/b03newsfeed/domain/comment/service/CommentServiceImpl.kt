@@ -35,22 +35,18 @@ class CommentServiceImpl(
     }
 
     @Transactional
-    override fun createComment(userId: Long, postId: Long, request: CreateCommentRequest): CommentResponse {
+    override fun createComment( postId: Long, request: CreateCommentRequest): CommentResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw CommentNotFoundException("post", postId)
-        val user = userRepository.findByIdOrNull(userId) ?: throw CommentNotFoundException("user", userId)
+        val user = userRepository.findByIdOrNull(request.userId) ?: throw CommentNotFoundException("user", request.userId)
         val comment = com.teamsparta.b03newsfeed.domain.comment.model.Comment(
             description = request.description,
             post = post,
             user = user
-            //  JWT
-
-
+          //  JWT
         )
         post.createComment(comment)
         postRepository.save(post)
         return comment.toResponse()
-
-
     }
 
     @Transactional

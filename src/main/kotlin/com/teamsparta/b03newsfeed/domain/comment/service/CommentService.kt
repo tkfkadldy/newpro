@@ -9,7 +9,8 @@ interface CommentService {
 
     fun getCommentById(postId: Long, commentId: Long): CommentResponse
 
-    fun createComment(userId: Long, postId: Long, request: CreateCommentRequest): CommentResponse
+
+    fun createComment( postId: Long, request: CreateCommentRequest): CommentResponse
 
     fun updateComment(postId: Long, commentId: Long, request: UpdateCommentRequest): CommentResponse
 

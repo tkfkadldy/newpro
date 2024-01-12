@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-//이름바꾼거 테스트
+
 
 @RequestMapping("/posts/{postId}/comments")
 @RestController
@@ -45,15 +45,15 @@ class CommentController(
             .body(commentService.updateComment(postId, commentId, updateCommentRequest))
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping
     fun createComment(
         @PathVariable postId: Long,
-        @PathVariable userId: Long,
         @RequestBody createCommentRequest: CreateCommentRequest
     ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(commentService.createComment(userId, postId, createCommentRequest))
+
+            .body(commentService.createComment(postId , createCommentRequest))
     }
 
     @DeleteMapping("/{commentId}")
