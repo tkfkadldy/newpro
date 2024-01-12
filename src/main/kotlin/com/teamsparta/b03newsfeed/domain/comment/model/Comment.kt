@@ -21,14 +21,14 @@ class Comment(
     val updateAt: LocalDateTime = LocalDateTime.now(),
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
-    val post: Post,
+    var post: Post,
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    val user: User
+    var user: User
 
     //  post 생명주기 OntToMany (옆에 cascade= [CascadeType.ALL], orphanRemoval = true)
 

@@ -8,7 +8,6 @@ import com.teamsparta.b03newsfeed.domain.comment.model.toResponse
 import com.teamsparta.b03newsfeed.domain.comment.repository.CommentRepository
 import com.teamsparta.b03newsfeed.domain.post.repository.PostRepository
 import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
-import org.hibernate.annotations.Comment
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -24,7 +23,7 @@ class CommentServiceImpl(
     override fun getAllCommentList(postId: Long): List<CommentResponse> {
 
         val post = postRepository.findByIdOrNull(postId) ?: throw CommentNotFoundException("post", postId)
-        return post.comments.map { it.toResponse() }
+        return post.comment.map { it.toResponse() }
     }
 
     override fun getCommentById(postId: Long, commentId: Long): CommentResponse {

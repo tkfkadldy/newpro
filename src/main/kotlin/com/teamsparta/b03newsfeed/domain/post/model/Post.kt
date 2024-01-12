@@ -31,10 +31,8 @@ class Post(
 
 
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
-    var comments: MutableList<Comment> = mutableListOf(),
+    var comment: MutableList<Comment> = mutableListOf(),
 
-//    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
-//    var users: MutableList<User> = mutableListOf(),
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -49,11 +47,11 @@ class Post(
 
 
     fun createComment(comment: Comment) {
-        comments.add(comment)
+        this.comment.add(comment)
     }
 
     fun deleteComment(comment: Comment) {
-        comments.remove(comment)
+        this.comment.remove(comment)
     }
 
 
