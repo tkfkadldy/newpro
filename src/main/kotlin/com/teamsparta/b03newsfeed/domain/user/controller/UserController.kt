@@ -2,7 +2,6 @@ package com.teamsparta.b03newsfeed.domain.user.controller
 
 import com.teamsparta.b03newsfeed.domain.user.dto.*
 import com.teamsparta.b03newsfeed.domain.user.service.UserService
-import org.apache.coyote.Response
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -33,8 +32,9 @@ class UserController(
     }
 
     @PutMapping("/users/{userId}/profile")
-    fun updateUserProfile(@PathVariable userId: Long,
-                          @RequestBody updateUserProfileRequest: UpdateUserProfileRequest
+    fun updateUserProfile(
+        @PathVariable userId: Long,
+        @RequestBody updateUserProfileRequest: UpdateUserProfileRequest
     ): ResponseEntity<UserResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)

@@ -4,9 +4,22 @@ spring:
     username: postgres
     password: teamb03!project!!
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: b03petcommunity.mail@gmail.com
+    password: needtoget
+    properties:
+      mail:
+        debug: true
+        smtp.auth: true
+        smtp.timeout: 50000 # SMTP 서버에 연결을 시도하고 응답을 기다리는 최대 시간이 50,000ms
+        smtp.starttls.enable: true
 
 auth:
   jwt:
     issuer: team.sparta.com
     secret: PO4c8z41Hia5gJG3oeuFJMRYBB4Ws4aZ
     accessTokenExpirationHour: 168
+
+

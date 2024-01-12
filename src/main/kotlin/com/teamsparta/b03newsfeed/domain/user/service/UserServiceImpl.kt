@@ -58,7 +58,8 @@ class UserServiceImpl(
                     "User" -> UserRole.User
                     "Admin" -> UserRole.Admin
                     else -> throw IllegalArgumentException("Invalid role")
-                }
+                },
+                certification = "-1"
             )
         ).toResponse()
     }

@@ -29,6 +29,9 @@ class User(
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
+    @Column(name= "certification", nullable = false)
+    var certification: String,
+
 ) {
 
     @Id
