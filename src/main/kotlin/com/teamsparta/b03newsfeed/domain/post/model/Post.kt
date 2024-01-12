@@ -2,6 +2,7 @@ package com.teamsparta.b03newsfeed.domain.post.model
 
 import com.teamsparta.b03newsfeed.domain.comment.model.Comment
 import com.teamsparta.b03newsfeed.domain.post.dto.PostResponse
+import com.teamsparta.b03newsfeed.domain.user.model.User
 import jakarta.persistence.*
 import java.time.LocalDateTime
 import kotlin.jvm.Transient
@@ -28,14 +29,12 @@ class Post(
     @Column (name="imageurl")
     var imageUrl: String,
 
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    var user: User,
 
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf()
-
-//    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
-//    var users: MutableList<User> = mutableListOf(),
 
 
 ) {
