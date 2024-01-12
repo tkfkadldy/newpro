@@ -15,17 +15,17 @@ class EmailService(
     private val javaMailSender: JavaMailSender,
     private val certificationGenerator: CertificationGenerator,
     private val userRepository: UserRepository,
-    ){
+) {
 
-    fun sendEmail(userId: Long): String{
+    fun sendEmail(userId: Long): String {
         val user = userRepository.findByIdOrNull(userId) ?: throw ModelNotFoundException("User", userId)
-        val number= certificationGenerator.createCertificationNumber()
+        val number = certificationGenerator.createCertificationNumber()
 
         user.certification = number
         userRepository.save(user)
 
 
-        val message= SimpleMailMessage()
+        val message = SimpleMailMessage()
         message.setTo(user.email)
         message.subject = "b03 newsfeed 본인 인증 이메일입니다."
         message.text = "인증 번호는 \n\n\n$number\n\n\n 입니다."
@@ -35,15 +35,14 @@ class EmailService(
     }
 
     @Transactional
-    fun checkEmail(userId: Long, request:EmailCertificationRequest): String{
+    fun checkEmail(userId: Long, request: EmailCertificationRequest): String {
         val user = userRepository.findByIdOrNull(userId) ?: throw ModelNotFoundException("User", userId)
 
-        if ( user.certification == request.certificationNumber ){
-            user.certification="Verified"
+        if (user.certification == request.certificationNumber) {
+            user.certification = "Verified"
             userRepository.save(user)
             return "이메일이 인증되었습니다."
-        }
-        else {
+        } else {
             return "인증번호가 다릅니다."
         }
 

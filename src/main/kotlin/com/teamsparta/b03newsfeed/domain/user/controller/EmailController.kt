@@ -13,7 +13,7 @@ class EmailController(
 ) {
 
     @GetMapping()
-    fun getUserEmail(@PathVariable userId: Long): ResponseEntity<String>{
+    fun getUserEmail(@PathVariable userId: Long): ResponseEntity<String> {
         emailService.sendEmail(userId)
         return ResponseEntity
             .status(HttpStatus.OK)
@@ -23,7 +23,8 @@ class EmailController(
     @PatchMapping()
     fun checkUserEmail(
         @PathVariable userId: Long,
-        @RequestBody emailCertificationRequest: EmailCertificationRequest): ResponseEntity<String>{
+        @RequestBody emailCertificationRequest: EmailCertificationRequest
+    ): ResponseEntity<String> {
         emailService.checkEmail(userId, emailCertificationRequest)
         return ResponseEntity
             .status(HttpStatus.OK)

@@ -43,7 +43,7 @@ class Comment(
 
 fun Comment.toResponse(): CommentResponse {
     return CommentResponse(
-        id=id!!,
+        id = id!!,
         description = description,
         updateAt = updateAt,
         createAt = createdAt,

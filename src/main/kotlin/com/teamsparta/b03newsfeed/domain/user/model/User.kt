@@ -1,8 +1,6 @@
 package com.teamsparta.b03newsfeed.domain.user.model
 
-import com.teamsparta.b03newsfeed.B03newsfeedApplication
 import com.teamsparta.b03newsfeed.domain.comment.model.Comment
-import com.teamsparta.b03newsfeed.domain.post.model.Post
 import com.teamsparta.b03newsfeed.domain.user.dto.UserResponse
 import jakarta.persistence.*
 
@@ -10,29 +8,29 @@ import jakarta.persistence.*
 @Table(name = "app_user")
 class User(
 
-    @Column(name= "email", nullable = false)
+    @Column(name = "email", nullable = false)
     val email: String,
 
-    @Column(name= "password", nullable = false)
+    @Column(name = "password", nullable = false)
     val password: String,
 
     @Embedded
     var profile: Profile,
 
     @Enumerated(EnumType.STRING)
-    @Column(name= "role", nullable = false)
+    @Column(name = "role", nullable = false)
     val role: UserRole,
 //
 //    @OneToMany(mappedBy = "app_user", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
 //    var posts: MutableList<Post> = mutableListOf()
 
-    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
-    @Column(name= "certification", nullable = false)
+    @Column(name = "certification", nullable = false)
     var certification: String,
 
-) {
+    ) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

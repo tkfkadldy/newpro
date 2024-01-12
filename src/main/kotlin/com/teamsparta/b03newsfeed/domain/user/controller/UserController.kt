@@ -11,7 +11,7 @@ class UserController(
     private val userService: UserService
 ) {
     @GetMapping("/users/{userId}")
-    fun getuserprofile(@PathVariable userId: Long): ResponseEntity<UserResponse> {
+    fun getUserProfile(@PathVariable userId: Long): ResponseEntity<UserResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(userService.getUserProfileById(userId))

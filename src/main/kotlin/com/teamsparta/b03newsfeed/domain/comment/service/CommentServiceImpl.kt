@@ -8,7 +8,6 @@ import com.teamsparta.b03newsfeed.domain.comment.model.toResponse
 import com.teamsparta.b03newsfeed.domain.comment.repository.CommentRepository
 import com.teamsparta.b03newsfeed.domain.post.repository.PostRepository
 import com.teamsparta.b03newsfeed.domain.user.repository.UserRepository
-import org.hibernate.annotations.Comment
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -36,15 +35,14 @@ class CommentServiceImpl(
     }
 
     @Transactional
-    override fun createComment( userId:Long ,postId: Long, request: CreateCommentRequest): CommentResponse {
+    override fun createComment(userId: Long, postId: Long, request: CreateCommentRequest): CommentResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw CommentNotFoundException("post", postId)
         val user = userRepository.findByIdOrNull(userId) ?: throw CommentNotFoundException("user", userId)
         val comment = com.teamsparta.b03newsfeed.domain.comment.model.Comment(
             description = request.description,
             post = post,
             user = user
-          //  JWT
-
+            //  JWT
 
 
         )
@@ -67,7 +65,7 @@ class CommentServiceImpl(
     }
 
     @Transactional
-    override fun deleteComment( postId: Long, commentId: Long) {
+    override fun deleteComment(postId: Long, commentId: Long) {
 
         val post = postRepository.findByIdOrNull(postId) ?: throw CommentNotFoundException("Post", postId)
         val comment = commentRepository.findByIdOrNull(commentId)

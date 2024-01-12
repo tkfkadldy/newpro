@@ -10,34 +10,33 @@ import java.time.LocalDateTime
 @Table(name = "post")
 class Post(
 
-    @Column(name="title")
+    @Column(name = "title")
     var title: String,
 
-    @Column(name="content")
+    @Column(name = "content")
     var content: String,
 
-    @Column (name="created_at")
-    var createdAt:LocalDateTime = LocalDateTime.now(),
+    @Column(name = "created_at")
+    var createdAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
     var updatedAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column(name= "tag")
+    @Column(name = "tag")
     var tag: String,
 
-    @Column (name="imageurl")
+    @Column(name = "imageurl")
     var imageUrl: String? = null,
 
 
-
-    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
     var comments: MutableList<Comment> = mutableListOf(),
 
-    @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
     var users: MutableList<User> = mutableListOf(),
 
 
-) {
+    ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
@@ -59,7 +58,7 @@ fun Post.toResponse(): PostResponse {
         id = id!!,
         title = title,
         content = content,
-        imageUrl = imageUrl ?:"",
+        imageUrl = imageUrl ?: "",
         tag = tag,
     )
 }

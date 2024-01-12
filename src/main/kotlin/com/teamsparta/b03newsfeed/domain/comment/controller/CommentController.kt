@@ -18,8 +18,10 @@ class CommentController(
 ) {
 
     @GetMapping("/{commentId}")
-    fun getComment(@PathVariable postId: Long,
-                   @PathVariable commentId: Long): ResponseEntity<CommentResponse> {
+    fun getComment(
+        @PathVariable postId: Long,
+        @PathVariable commentId: Long
+    ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(commentService.getCommentById(postId, commentId))
@@ -51,7 +53,7 @@ class CommentController(
     ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(commentService.createComment(userId ,postId , createCommentRequest))
+            .body(commentService.createComment(userId, postId, createCommentRequest))
     }
 
     @DeleteMapping("/{commentId}")
