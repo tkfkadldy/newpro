@@ -44,15 +44,10 @@ class CommentServiceImpl(
             post = post,
             user = user
           //  JWT
-
-
-
         )
         post.createComment(comment)
         postRepository.save(post)
         return comment.toResponse()
-
-
     }
 
     @Transactional
