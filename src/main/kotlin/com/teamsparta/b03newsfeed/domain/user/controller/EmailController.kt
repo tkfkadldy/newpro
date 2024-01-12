@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/users/{userId}")
+@RequestMapping("/users/{userId}/auth")
 class EmailController(
     private val emailService: EmailService
 ) {
@@ -20,7 +20,7 @@ class EmailController(
             .body("가입 시 입력한 이메일로 인증 번호가 전송되었어요.")
     }
 
-    @PatchMapping("/check")
+    @PatchMapping()
     fun checkUserEmail(
         @PathVariable userId: Long,
         @RequestBody emailCertificationRequest: EmailCertificationRequest): ResponseEntity<String>{
