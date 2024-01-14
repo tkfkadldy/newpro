@@ -12,6 +12,17 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
+
+//댓글 서비스를 구현하는 클래스
+//@Service 애노테이션을 사용하여 Spring Bean으로 등록
+//CommentRepository, PostRepository, UserRepository를 주입받아 댓글, 게시물, 사용자 정보에 접근
+//CommentService 인터페이스를 구현하여 댓글 관련 서비스를 제공
+//지정된 게시물의 모든 댓글 목록을 조회
+//지정된 게시물의 특정 댓글을 조회
+//새로운 댓글을 생성
+//기존 댓글을 수정
+//특정 댓글을 삭제
+
 @Service
 class CommentServiceImpl(
     private val commentRepository: CommentRepository,

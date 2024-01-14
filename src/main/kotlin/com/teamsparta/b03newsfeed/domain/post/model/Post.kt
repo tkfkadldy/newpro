@@ -34,7 +34,11 @@ class Post(
     var user: User,
 
     @OneToMany( cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.LAZY)
-    var comments: MutableList<Comment> = mutableListOf()
+    var comments: MutableList<Comment> = mutableListOf(),
+
+
+    @Column(name = "like_count", )
+    var likeCount: Int? = 0
 
 
     ) {
