@@ -1,6 +1,7 @@
 package com.teamsparta.b03newsfeed.domain.user.model
 
 import com.teamsparta.b03newsfeed.domain.comment.model.Comment
+import com.teamsparta.b03newsfeed.domain.post.model.Post
 import com.teamsparta.b03newsfeed.domain.user.dto.UserResponse
 import jakarta.persistence.*
 
@@ -47,4 +48,3 @@ fun User.toResponse(): UserResponse {
         introduce = profile.introduce
     )
 }
-// 에러``````````````````````````````````````````````````````````````````````````````````````````````````````````
