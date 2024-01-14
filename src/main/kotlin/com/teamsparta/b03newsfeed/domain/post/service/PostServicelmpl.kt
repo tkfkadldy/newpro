@@ -19,16 +19,18 @@ class PostServiceImpl(
     private val postRepository: PostRepository,
     private val commentRepository: CommentRepository,
     private val userRepository: UserRepository,
-) :PostService {
+) : PostService {
 
     override fun getPostList(): List<PostResponse> {
         return postRepository.findAll().map { it.toResponse() }
     }
+
     override fun getPost(postId: Long): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
         return post.toResponse()
 
     }
+
     @Transactional
     override fun createPost(request: CreatePostRequest): PostResponse {
         val user = userRepository.findByIdOrNull(request.userId)?: throw ModelNotFoundException("User", null)
@@ -43,10 +45,11 @@ class PostServiceImpl(
             )
         ).toResponse()
     }
+
     @Transactional
     override fun updatePost(postId: Long, request: UpdatePostRequest): PostResponse {
         val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException("Post", postId)
-        val (title, content,imageUrl,tag) = request
+        val (title, content, imageUrl, tag) = request
 
         post.title = title
         post.content = content

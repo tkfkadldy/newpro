@@ -1,9 +1,9 @@
 package com.teamsparta.b03newsfeed.domain.post.controller
 
-import com.teamsparta.b03newsfeed.domain.post.exception.PostNotFoundException
 import com.teamsparta.b03newsfeed.domain.post.dto.CreatePostRequest
 import com.teamsparta.b03newsfeed.domain.post.dto.PostResponse
 import com.teamsparta.b03newsfeed.domain.post.dto.UpdatePostRequest
+import com.teamsparta.b03newsfeed.domain.post.exception.PostNotFoundException
 import com.teamsparta.b03newsfeed.domain.post.exception.dto.ErrorResponse
 import com.teamsparta.b03newsfeed.domain.post.service.PostService
 import org.springframework.http.HttpStatus

@@ -27,8 +27,10 @@ class CommentController(
     //조회된 댓글을 CommentResponse 객체로 변환하고 응답 본문에 포함
 
     @GetMapping("/{commentId}")
-    fun getComment(@PathVariable postId: Long,
-                   @PathVariable commentId: Long): ResponseEntity<CommentResponse> {
+    fun getComment(
+        @PathVariable postId: Long,
+        @PathVariable commentId: Long
+    ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(commentService.getCommentById(postId, commentId))
@@ -72,6 +74,7 @@ class CommentController(
     ): ResponseEntity<CommentResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
+
             .body(commentService.createComment(postId , createCommentRequest))
     }
 

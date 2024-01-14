@@ -11,19 +11,19 @@ import kotlin.jvm.Transient
 @Table(name = "post")
 class Post(
 
-    @Column(name="title")
+    @Column(name = "title")
     var title: String,
 
-    @Column(name="content")
+    @Column(name = "content")
     var content: String,
 
-    @Column (name="created_at")
-    var createdAt:LocalDateTime = LocalDateTime.now(),
+    @Column(name = "created_at")
+    var createdAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
     var updatedAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column(name= "tag")
+    @Column(name = "tag")
     var tag: String,
 
     @Column (name="imageurl")
@@ -41,7 +41,7 @@ class Post(
     var likeCount: Int? = 0
 
 
-) {
+    ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")

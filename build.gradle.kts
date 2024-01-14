@@ -38,18 +38,6 @@ configurations {
 repositories {
 	mavenCentral()
 }
-noArg {
-	annotation("jakarta.persistence.Entity")
-	annotation("jakarta.persistence.MappedSuperclass")
-	annotation("jakarta.persistence.Embeddable")
-}
-
-allOpen {
-	annotation("jakarta.persistence.Entity")
-	annotation("jakarta.persistence.MappedSuperclass")
-	annotation("jakarta.persistence.Embeddable")
-
-}
 
 
 dependencies {
@@ -69,6 +57,21 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation ("org.postgresql:postgresql")
 	runtimeOnly("org.postgresql:postgresql")
+
+	//spring security 관련
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("io.jsonwebtoken:jjwt-api:0.12.3")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.3")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.3")
+
+	// supabase.auth? 메일 인증 시간/ 인증번호
+	implementation("io.github.jan-tennert.supabase:gotrue-kt:2.0.4")
+
+
+
+	// mail 사용자에게 메일을 발송
+	implementation ("org.springframework.boot:spring-boot-starter-mail")
+
 }
 
 tasks.withType<KotlinCompile> {

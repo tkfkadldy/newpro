@@ -6,15 +6,15 @@ import com.teamsparta.b03newsfeed.domain.post.dto.UpdatePostRequest
 
 
 interface PostService {
-     fun getPostList(): List<PostResponse>
+    fun getPostList(): List<PostResponse>
 
-     fun getPost(postId:Long) : PostResponse
+    fun getPost(postId: Long): PostResponse
 
-     fun createPost(request: CreatePostRequest) :PostResponse
+    fun createPost(request: CreatePostRequest): PostResponse
 
-     fun updatePost(postId: Long, request: UpdatePostRequest) :PostResponse
+    fun updatePost(postId: Long, request: UpdatePostRequest): PostResponse
 
-     fun deletePost(postId: Long)
+    fun deletePost(postId: Long)
 
 
 }
